@@ -38,21 +38,36 @@
     </style>
 </head>
 <body>
+    <h1>NeptunJS Emulator</h1>
     <div id="emul"></div>
-		<script src="https://mem.neptunjs.com/njs/njsLoader.js" type="text/javascript"> //NeptunJS lib
-
+    <div id="error-message" class="error"></div>
 
     <script>
-	const urlParams = new URLSearchParams(window.location.search);
-	const gameUrl = urlParams.get('game'); // Extract the ROM URL
-	var NepPlayer = "emul";
-	var NepEmu = "gbc";
-	var NepLang = "en";
-	var gameUrl = gameUrl;
-	var NjsScript=document.createElement('script');
-	NjsScript.src="//mem.neptunjs.com/njs/njsLoader.js";
-	document.body.appendChild(NjsScript)
+        // Extract the "game" parameter from the URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameUrl = urlParams.get('game'); // Get the ROM URL
 
+        // Set emulator configurations
+        const NepPlayer = "#emul";
+        const NepEmu = "gbc"; // Example: Game Boy Color emulator
+        const NepLang = "en";
+
+        if (gameUrl) {
+            try {
+                // Dynamically load the NeptunJS script
+                const NjsScript = document.createElement('script');
+                NjsScript.src = "//mem.neptunjs.com/njs/njsLoader.js";
+                document.body.appendChild(NjsScript);
+            } catch (error) {
+                // Display error if script fails to load
+                alert("An error occurred while loading the emulator: " + error.message);
+                console.error(error);
+            }
+        } else {
+            // Display error if no game URL is provided
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.textContent = "Error: No game URL provided! Use ?game=<ROM_URL>";
+        }
     </script>
 </body>
 </html>
