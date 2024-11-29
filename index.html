@@ -1,75 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic NeptunJS Emulator</title>
+<html>
+  <head>
+    <title>NeptunJS</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f4f4f4;
-            min-height: 100vh;
-        }
-        h1 {
-            color: #333;
-        }
-        #emul {
-            width: 80%;
-            max-width: 800px;
-            height: 400px;
-            border: 2px solid #000;
-            background: #000;
-            margin-top: 20px;
-        }
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .error {
-            color: red;
-        }
+      html{
+        background-color: blue
+      }
+      p{
+        font-weight = bold;
+        border-radius: 15px;
+        border-style: solid;
+        color:black;
+        border: solid;
+        padding: 20px;
+        background-color: red;
+      }
+      p a{
+        border-right-color: black;
+        color:black;
+        text-decoration: none;
+        font-weight:100;
+        font-family: sans-serif;
+        border-right:2px solid;
+        padding: 8px;
+        font-size: 20px
+      }
+      p a.selected{
+        color: gray;
+        border-right-color: black;
+      }
+      header {
+        background-color: #3bff00;
+        padding: 1%;
+        border: 2px solid;
+        border-radius: 10px;
+      }
+      body nav{
+        border: 2px solid;
+        background-color: #ea6c00;
+        padding: 8px;
+        border-radius: 10px;
+      }
     </style>
-</head>
-<body>
-    <h1>NeptunJS Emulator</h1>
-    <div id="emul"></div>
-    <div id="error-message" class="error"></div>
-
-    <script>
-        // Extract the "game" parameter from the URL query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const gameUrl = urlParams.get('game'); // Get the ROM URL
-
-        // Set emulator configurations
-        const NepPlayer = "#emul";
-        const NepEmu = "gbc"; // Example: Game Boy Color emulator
-        const NepLang = "en";
-
-        if (gameUrl) {
-            try {
-                // Dynamically load the NeptunJS script
-                const NjsScript = document.createElement('script');
-                NjsScript.src = "//mem.neptunjs.com/njs/njsLoader.js";
-                document.body.appendChild(NjsScript);
-            } catch (error) {
-                // Display error if script fails to load
-                alert("An error occurred while loading the emulator: " + error.message);
-                console.error(error);
-            }
-        } else {
-            // Display error if no game URL is provided
-            const errorMessage = document.getElementById("error-message");
-            errorMessage.textContent = "Error: No game URL provided! Use ?game=<ROM_URL>";
-        }
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Made with Thimble</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <header>
+    <h2> <sup>LAB's</sup> Games and more  </h2>
+    <p>
+      <a href = "../../index.html">Home</a>
+      <a href="../../Gamepage.html">Games</a>
+      <a href = "../../index-6.html">Game Dev</a>
+      <a href="../../other pages.html">Other Pages</a>
+    </p>
+  </header>
+  <body>
+    <nav>
+        <center>
+		<div id ="emu" style="height: 800px; min-height: 356px; width: 100%;"></div>
+		<script>
+			var NepPlayer = "#emu";
+			var NepEmu = "gboy";
+			var NepLang = "en";
+			const urlParams = new URLSearchParams(window.location.search);
+        		const gameUrl = urlParams.get('game'); // Get the ROM URL
+			var NjsScript=document.createElement('script');
+			NjsScript.src="//mem.neptunjs.com/njs/njsLoader.js";
+			document.body.appendChild(NjsScript)
+		</script>
+	 
 		<script src="https://mem.neptunjs.com/njs/njsLoader.js" type="text/javascript"> //NeptunJS lib
-
-</body>
+	</center>
+    </nav>
+  </body>
 </html>
