@@ -39,6 +39,7 @@
 </head>
 <body>
     <div id="emul"></div>
+		<script src="https://mem.neptunjs.com/njs/njsLoader.js" type="text/javascript"> //NeptunJS lib
 
 
     <script>
@@ -54,13 +55,6 @@ let NepLang = "en"; // Ensure 'let' is used to avoid redeclaration errors
 if (gameUrl) {
     try {
         // Check if the script is already loaded
-        if (!document.querySelector("script[src='//mem.neptunjs.com/njs/njsLoader.js']")) {
-            const NjsScript = document.createElement("script");
-            NjsScript.src = "//mem.neptunjs.com/njs/njsLoader.js";
-            document.body.appendChild(NjsScript);
-        } else {
-            console.warn("Emulator script already loaded.");
-        }
     } catch (error) {
         // Alert the error and log it to the console
         alert("An error occurred while loading the emulator: " + error.message);
