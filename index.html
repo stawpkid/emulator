@@ -43,27 +43,15 @@
 
 
     <script>
-// Get the "game" parameter from the query string
-const urlParams = new URLSearchParams(window.location.search);
-const gameUrl = urlParams.get('game'); // Extract the ROM URL
-
-// Emulator setup
-const NepPlayer = "#emul"; // Ensure this remains consistent
-const NepEmu = "gbc"; // Set the emulator type (e.g., Game Boy Color)
-let NepLang = "en"; // Ensure 'let' is used to avoid redeclaration errors
-
-if (gameUrl) {
-    try {
-        // Check if the script is already loaded
-    } catch (error) {
-        // Alert the error and log it to the console
-        alert("An error occurred while loading the emulator: " + error.message);
-        console.error(error);
-    }
-} else {
-    // Alert if no game URL is provided
-    alert("Error: No game URL provided! Use ?game=<ROM_URL>");
-}
+	const urlParams = new URLSearchParams(window.location.search);
+	const gameUrl = urlParams.get('game'); // Extract the ROM URL
+	var NepPlayer = "emul";
+	var NepEmu = "gbc";
+	var NepLang = "en";
+	var gameUrl = gameUrl;
+	var NjsScript=document.createElement('script');
+	NjsScript.src="//mem.neptunjs.com/njs/njsLoader.js";
+	document.body.appendChild(NjsScript)
 
     </script>
 </body>
