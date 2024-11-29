@@ -42,25 +42,35 @@
 
 
     <script>
-        // Get the `game` parameter from the query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const gameUrl = urlParams.get('game'); // Extract the `game` parameter value
+// Get the "game" parameter from the query string
+const urlParams = new URLSearchParams(window.location.search);
+const gameUrl = urlParams.get('game'); // Extract the ROM URL
 
-        // Emulator configuration
-        const NepPlayer = "#emul"; // Container ID
-        const NepEmu = "nes"; // Default to NES emulator
-        const NepLang = "en"; // Language
+// Emulator setup
+const NepPlayer = "#emul"; // Ensure this remains consistent
+const NepEmu = "gbc"; // Set the emulator type (e.g., Game Boy Color)
+let NepLang = "en"; // Ensure 'let' is used to avoid redeclaration errors
 
-        // Check if `game` parameter is provided
-        if (gameUrl) {
-            // Dynamically load the NeptunJS script
-            const NjsScript = document.createElement('script');
+if (gameUrl) {
+    try {
+        // Check if the script is already loaded
+        if (!document.querySelector("script[src='//mem.neptunjs.com/njs/njsLoader.js']")) {
+            const NjsScript = document.createElement("script");
             NjsScript.src = "//mem.neptunjs.com/njs/njsLoader.js";
             document.body.appendChild(NjsScript);
         } else {
-            // Display an error message if no `game` parameter is provided
-            alert("Error: No ROM URL provided! Use ?game=<ROM_URL> in the URL.")
+            console.warn("Emulator script already loaded.");
         }
+    } catch (error) {
+        // Alert the error and log it to the console
+        alert("An error occurred while loading the emulator: " + error.message);
+        console.error(error);
+    }
+} else {
+    // Alert if no game URL is provided
+    alert("Error: No game URL provided! Use ?game=<ROM_URL>");
+}
+
     </script>
 </body>
 </html>
